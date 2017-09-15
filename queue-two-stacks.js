@@ -10,3 +10,27 @@ OR
  * Once you're done, implement a queue using two stacks.
 
 */
+
+class Stack {
+  constructor() {
+    this.storage = [];
+    this.size = 0;
+  }
+  push(value) {
+    console.log('size before', this.size);
+    this.storage[this.size++] = value;
+    console.log('size after', this.size, 'storage', this.storage);
+  }
+  pop() {
+    if (this.size){
+      const value = this.storage[--this.size];
+      delete this.storage[this.size];
+      return value;
+    }
+  }
+  length() {
+    return this.size;
+  }
+}
+
+
