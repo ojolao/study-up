@@ -17,20 +17,43 @@ class Stack {
     this.size = 0;
   }
   push(value) {
-    console.log('size before', this.size);
     this.storage[this.size++] = value;
-    console.log('size after', this.size, 'storage', this.storage);
   }
   pop() {
-    if (this.size){
+    if (this.size) {
       const value = this.storage[--this.size];
       delete this.storage[this.size];
       return value;
     }
+    return undefined;
   }
   length() {
     return this.size;
   }
 }
 
-
+class Queue {
+  constructor() {
+    this.inbox = new Stack();
+    this.outbox = new Stack();
+  }
+  enqueue(value) {
+    this.inbox.push(value);
+  }
+  // dequeue--
+  dequeue() {
+  // if this.outbox is empty, pop inbox until it's empty
+    if (this.outbox.length() === 0) {
+      while (this.inbox.length() > 0) {
+        this.outbox.push(this.inbox.pop());
+      }
+    }
+    if (this.outbox.length() > 0) {
+      return this.outbox.pop();
+    }
+    return undefined;
+  }
+  length() {
+    return this.inbox.size + this.outbox.size;
+  }
+}
