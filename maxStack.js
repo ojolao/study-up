@@ -37,36 +37,32 @@ Stack.prototype.peek = function () {
 
 class MaxStack {
   constructor() {
-    this.minStorage = new Stack();
+    this.storage = new Stack();
     this.maxStorage = new Stack();
     this.size = 0;
   }
 // keep track of max
   // with every insert, you update max if needed;
   push(value) {
-    if (this.size === 0 || this.minStorage.peek() <= value) {
-      this.minStorage.push(value);
-      this.size += 1;
-    } else if (this.minStorage.peek() > value) {
-      while (this.minStorage.peek() > value) {
-        this.maxStorage.push(this.minStorage.pop());
-      }
-      this.minStorage.push(value);
-      this.size += 1;
-      while (this.maxStorage.peek()) {
-        this.minStorage.push(this.maxStorage.pop());
-      }
+    this.storage.push(value);
+    if (!this.maxStorage.peek() || value > this.maxStorage.peek()){
+      this.maxStorage.push(value);
     }
+    this.size++;
   }
   pop() {
     this.size--;
-    return this.minStorage.pop();
+    const item = this.storage.pop();
+    if (item === this.maxStorage.peek()) {
+      this.maxStorage.pop();
+    }
+    return item;
   }
   peek() {
-    return this.minStorage.peek();
+    return this.storage.peek();
   }
   getMax() {
-    return this.minStorage.peek();
+    return this.maxStorage.peek();
   }
 }
   // have to keep it sorted--peek at minStorage, if it's greater, push,
