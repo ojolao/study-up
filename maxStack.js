@@ -45,7 +45,7 @@ class MaxStack {
   // with every insert, you update max if needed;
   push(value) {
     this.storage.push(value);
-    if (!this.maxStorage.peek() || value > this.maxStorage.peek()){
+    if (!this.maxStorage.peek() || value >= this.maxStorage.peek()){
       this.maxStorage.push(value);
     }
     this.size++;
