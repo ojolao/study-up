@@ -26,3 +26,11 @@ function findUniqueInt(array) {
   output = Object.entries(checker);
   return parseInt(output[0][0], 10); // if there is only one duplicate, this should work
 }
+
+const findUniqueInt1 = (array) => {
+  let uniqueId = 0;
+  array.forEach((value) => {
+    uniqueId ^= value;
+  });
+  return uniqueId;
+};
