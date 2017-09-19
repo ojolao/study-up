@@ -8,3 +8,21 @@ Given the array of IDs, which contains many duplicate integers and one unique in
 
 The IDs are not guaranteed to be sorted or sequential. Orders aren't always fulfilled in the order they were received, and some deliveries get cancelled before takeoff. */
 
+function findUniqueInt(array) {
+  //use an object to store values so far
+  //iterate through the array
+    //if a value is duplicated, remove it from the checker
+  //return the value remaining
+  const checker = {};
+  let output;
+
+  for (let i = 0; i < array.length; i++) {
+    if (checker[array[i]]) { // if current value has been stored already
+      delete checker[array[i]];
+    } else {
+      checker[array[i]] = 1;
+    }
+  }
+  output = Object.entries(checker);
+  return parseInt(output[0][0], 10); // if there is only one duplicate, this should work
+}
