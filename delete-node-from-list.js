@@ -17,3 +17,15 @@ b.next = c;
 
 deleteNode(b);
 */
+
+// given the node to delete, reassign value to the next node and pointer to the next node's pointer
+
+const deleteNode = (node) => {
+  if (node.next) {
+    node.value = node.next.value;
+    node.next = node.next.next;
+  } else {
+    node.value = null;
+    throw new Error("Can't delete the last node with this method!");
+  }
+}
