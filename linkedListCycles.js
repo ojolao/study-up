@@ -29,4 +29,21 @@
  * Constraint 1: Do this in linear time
  * Constraint 2: Do this in constant space
  * Constraint 3: Do not mutate the original nodes in any way
+
+ Write a function containsCycle() that takes the first node in a singly-linked list and returns a boolean indicating whether the list contains a cycle.
  */
+
+const containsCycle = (node) => {
+  let checker1 = node;
+  let checker2 = node.next;
+
+  while (checker1 && checker2) {
+    if (checker1 === checker2) {
+      return true;
+    }
+    checker1 = checker1.next;
+    checker2 = checker2.next.next;
+  }
+  return false;
+};
+
