@@ -11,19 +11,19 @@ parenthesis), the output should be 79 (position of the last parenthesis).
 
 function parenthesisMatch(string, parenIndex) {
   // starting with parenIndex, confirm it's an open parenthetical, if it's not, throw an error.
-  const parenSoFar = ['('];
+  let parenSoFar = 1;
   if (string[parenIndex] !== '(') {
     throw new Error('that position is not a parenthesis');
   } else {
     // if it is, store in an array;
     for (let i = parenIndex + 1; i < string.length; i++) {
       if (string[i] === '(') {
-        parenSoFar.push(string[i]);
+        parenSoFar += 1;
       // find the next closing,
       } else if (string[i] === ')') {
-        parenSoFar.pop();
+        parenSoFar -= 1;
       // if after popping the array is empty, return the current index;
-        if (parenSoFar.length === 0) {
+        if (parenSoFar === 0) {
           return i;
         }
       }
