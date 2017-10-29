@@ -12,3 +12,31 @@ Examples:
 "{ [ }" should return false
 
 */
+
+function bracketValidator(string) {
+  const openers = {
+    '(': ')',
+    '{': '}',
+    '[': ']',
+  };
+  const closers = {
+    ')': '(',
+    '}': '{',
+    ']': '[',
+  };
+  const openBrackets = [];
+  for (let i = 0; i < string.length; i++) {
+    if (openers[string.charAt(i)]) {
+      // add to openBrackets
+      openBrackets.push(string.charAt(i));
+    } else if (closers[string.charAt(i)]) {
+      const currentCloser = openers[openBrackets.pop()];
+      if (string.charAt(i) !== currentCloser) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+bracketValidator('{ [ ] ( ) }');
