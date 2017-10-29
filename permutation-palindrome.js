@@ -24,8 +24,17 @@ function permutationPalindrome(string) {
     }
   }
   const remaining = Object.keys(chars);
-  if (remaining.length > 1) {
-    return false;
+  return remaining.length < 2;
+}
+
+function permutationPalindromeSet(string) {
+  const chars = new Set();
+  for (let i = 0; i< string.length; i++) {
+    if (chars.has(string.charAt(i))) {
+      chars.delete(string.charAt(i));
+    } else {
+      chars.add(string.charAt(i));
+    }
   }
-  return true;
+  return chars.size < 2;
 }
