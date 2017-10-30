@@ -10,3 +10,23 @@ an array of unsortedScores
 the highestPossibleScore in the game
 and returns a sorted array of scores in less than O(n\lg{n})O(nlgn) time.
 */
+
+function topScores(unsortedScores, highestPossibleScore) {
+  const scoreCount = [];
+  const sortedScore = [];
+  for (let i = 0; i < unsortedScores.length; i++) {
+    const score = unsortedScores[i];
+    if (scoreCount[score]) {
+      scoreCount[score]++;
+    } else {
+      scoreCount[score] = 1;
+    }
+  }
+  for (let j = highestPossibleScore; j >= 0; j--) {
+    while (scoreCount[j] > 0) {
+      sortedScore.push(j);
+      scoreCount[j]--;
+    }
+  }
+  return sortedScore;
+}
