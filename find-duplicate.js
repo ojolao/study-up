@@ -15,3 +15,13 @@ function findDuplicate(array) {
   }
   return 'no duplicate';
 }
+
+function findDuplicate1(array) {
+  const n = array.length - 1;
+  const totalSum = (n + 1) * (n/2);
+  let arraySum = 0;
+  for (let i = 0; i < array.length; i++) {
+    arraySum += array[i];
+  }
+  return arraySum - totalSum;
+}
