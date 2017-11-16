@@ -1,0 +1,13 @@
+.displayClock {
+  width: 500px;
+  border: .1rem solid black;
+  padding: .5rem;
+  text-align: center;
+  font-family: 'Orbitron', 'sans-serif';
+  font-size: 4rem;
+  visibility: hidden;
+}
+
+.digits {
+  color: green;
+}
